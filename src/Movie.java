@@ -5,6 +5,7 @@ public class Movie {
     private int yearReleased;
     Movie next;
     Movie prev;
+    private int index;
 
     public Movie(){
     }
@@ -15,6 +16,14 @@ public class Movie {
         this.movieTitle = movieTitle;
         this.leadActor = leadActor;
         this.description = description;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getMovieTitle() {
