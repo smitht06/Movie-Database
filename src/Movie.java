@@ -1,15 +1,15 @@
-public class Node {
+public class Movie {
     private String movieTitle;
     private String leadActor;
     private String description;
     private int yearReleased;
-    Node next;
-    Node prev;
+    Movie next;
+    Movie prev;
 
-    public Node(){
+    public Movie(){
     }
 
-    public Node(String movieTitle, String leadActor, String description){
+    public Movie(String movieTitle, String leadActor, String description){
         next = null;
         prev = null;
         this.movieTitle = movieTitle;
@@ -49,19 +49,19 @@ public class Node {
         this.yearReleased = yearReleased;
     }
 
-    public Node getNext() {
+    public Movie getNext() {
         return next;
     }
 
-    public void setNext(Node next) {
+    public void setNext(Movie next) {
         this.next = next;
     }
 
-    public Node getPrev() {
+    public Movie getPrev() {
         return prev;
     }
 
-    public void setPrev(Node prev) {
+    public void setPrev(Movie prev) {
         this.prev = prev;
     }
 }

@@ -1,12 +1,12 @@
 public class MovieList {
-    Node head;
-    Node tail;
+    Movie head;
+    Movie tail;
 
     public MovieList(){
         head = tail = null;
     }
 
-    public void addMovie(Node movie){
+    public void addMovie(Movie movie){
         if(head == null){
             head = movie;
             tail = head;
