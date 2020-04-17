@@ -34,4 +34,16 @@ public class MovieHashTable {
     public void setMovieDatabase(MovieList[] movieDatabase) {
         this.movieDatabase = movieDatabase;
     }
+
+    public void printDatabase(){
+        for(MovieList movieList : movieDatabase){
+            movieList.printList();
+        }
+    }
+
+    public void searchMovieByTitle(String title){
+        for (int i = 0; i < movieDatabase.length; i++){
+            movieDatabase[i].searchList(title);
+        }
+    }
 }

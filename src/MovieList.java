@@ -30,6 +30,29 @@ public class MovieList {
         return tail;
     }
 
+    public void printList(){
+        Movie movie = head;
+        while (movie != null){
+            System.out.println(movie.getMovieTitle());
+            System.out.println(movie.getLeadActor());
+            System.out.println(movie.getDescription());
+            movie = movie.next;
+        }
+
+    }
+    public Movie searchList(String data){
+        Movie movie = this.head;
+        while (movie != null){
+            if(data == movie.getMovieTitle()){
+                System.out.println(movie.getMovieTitle());
+                return movie;
+            }else{
+                movie = movie.next;
+            }
+        }
+        return null;
+    }
+
 
 
 }
