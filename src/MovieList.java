@@ -40,7 +40,7 @@ public class MovieList {
         }
 
     }
-    public Movie searchList(String data){
+    public Movie searchListByTitle(String data){
         Movie movie = this.head;
         while (movie != null){
             if(data == movie.getMovieTitle()){
@@ -52,7 +52,4 @@ public class MovieList {
         }
         return null;
     }
-
-
-
 }

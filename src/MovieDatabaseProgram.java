@@ -12,8 +12,11 @@ public class MovieDatabaseProgram {
 
         //movies.printDatabase();
 
-        movies.searchMovieByTitle("Shaw Shank");
+        //movies.searchMovieByTitle("Shaw Shank");
 
+        movies.doubleSize();
+        movies.getDatabaseSize();
+        movies.printDatabase();
 
 
     }
