@@ -40,16 +40,15 @@ public class MovieList {
         }
 
     }
-    public Movie searchListByTitle(String data){
+    public void searchListByTitle(String data){
         Movie movie = this.head;
         while (movie != null){
-            if(data == movie.getMovieTitle()){
-                System.out.println(movie.getMovieTitle());
-                return movie;
+            if(data.equals(movie.getMovieTitle())){
+                System.out.println("Movie found!" + movie.getMovieTitle());
+                return;
             }else{
                 movie = movie.next;
             }
         }
-        return null;
     }
 }

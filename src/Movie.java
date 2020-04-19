@@ -2,7 +2,7 @@ public class Movie {
     private String movieTitle;
     private String leadActor;
     private String description;
-    private int yearReleased;
+    private String yearReleased;
     Movie next;
     Movie prev;
     private int index;
@@ -10,12 +10,13 @@ public class Movie {
     public Movie(){
     }
 
-    public Movie(String movieTitle, String leadActor, String description){
-        next = null;
-        prev = null;
+    public Movie(String movieTitle, String leadActor, String description, String yearReleased){
+        this.next = null;
+        this.prev = null;
         this.movieTitle = movieTitle;
         this.leadActor = leadActor;
         this.description = description;
+        this.yearReleased = yearReleased;
     }
 
     public int getIndex() {
@@ -50,11 +51,11 @@ public class Movie {
         this.description = description;
     }
 
-    public int getYearReleased() {
+    public String getYearReleased() {
         return yearReleased;
     }
 
-    public void setYearReleased(int yearReleased) {
+    public void setYearReleased(String yearReleased) {
         this.yearReleased = yearReleased;
     }
 

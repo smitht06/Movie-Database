@@ -12,6 +12,17 @@ public class MovieHashTable {
         }
     }
 
+    public int stringHash(String movieTitle){
+        int stringHash = 5831;
+        int [] charArray = new int[movieTitle.length()];
+        for(int i = 0; i < movieTitle.length(); i++){
+            charArray[i] = (int) movieTitle.charAt(i);
+            stringHash = (5831 * 33) + charArray[i];
+        }
+        return stringHash;
+    }
+
+
     public int stringHash(Movie movie){
         int stringHash = 5831;
         String movieTitle = movie.getMovieTitle();
@@ -20,12 +31,12 @@ public class MovieHashTable {
             charArray[i] = (int) movieTitle.charAt(i);
             stringHash = (5831 * 33) + charArray[i];
         }
-        return stringHash % movieDatabase.length;
+        return stringHash;
         }
 
     public void addMovie(Movie movie){
         int stringHash = stringHash(movie);
-        movieDatabase[stringHash].addMovie(movie);
+        movieDatabase[stringHash % movieDatabase.length].addMovie(movie);
     }
 
     public MovieList[] getMovieDatabase() {
@@ -43,17 +54,17 @@ public class MovieHashTable {
     }
 
     public void searchMovieByTitle(String title){
-        for (int i = 0; i < movieDatabase.length; i++){
-            movieDatabase[i].searchListByTitle(title);
-        }
+        int stringHash = stringHash(title);
+        movieDatabase[stringHash].searchListByTitle(title);
     }
+
     public void readFile(String fileName){
         File file = new File(fileName);
         try {
             Scanner scan = new Scanner(file);
             while(scan.hasNextLine()){
                 String [] line = scan.nextLine().split(",");
-                Movie movie = new Movie(line[0],line[1],line[2]);
+                Movie movie = new Movie(line[0], line[1], line[2], line[3]);
                 addMovie(movie);
             }
         }catch(FileNotFoundException e){
@@ -67,7 +78,9 @@ public class MovieHashTable {
             newMovieDatabase[i] = new MovieList();
         }
         for(int i = 0; i < movieDatabase.length; i++){
-            newMovieDatabase[i] = movieDatabase[i];
+            if(movieDatabase[i].getHead() != null){
+                newMovieDatabase[stringHash(movieDatabase[i].getHead()) % newMovieDatabase.length] = movieDatabase[i];
+        }
         }
         this.movieDatabase = newMovieDatabase;
     }
