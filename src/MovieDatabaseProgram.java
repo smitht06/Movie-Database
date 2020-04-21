@@ -30,23 +30,31 @@ public class MovieDatabaseProgram {
 
        //System.out.println(movies.getMovieDatabase()[4].getHead().getMovieTitle());
         //movies.printDatabase();
-        int i = 0;
-        for(MovieList movies432 : movies.getMovieDatabase()){
-            System.out.println(i++);
-            movies432.printList();
-        }
-//        Scanner scan =  new Scanner(System.in);
-//        String moviesearch = scan.nextLine();
-//        movies.searchMovieByTitle(moviesearch);
-        System.out.println("\n\n");
-        movies.doubleSize();
-        i = 0;
-        for(MovieList movies432 : movies.getMovieDatabase()){
-            System.out.println(i++);
-            movies432.printList();
-        }
+//        int i = 0;
+//        for(MovieList movies432 : movies.getMovieDatabase()){
+//            System.out.println(i++);
+//            movies432.printList();
+//        }
+////        Scanner scan =  new Scanner(System.in);
+////        String moviesearch = scan.nextLine();
+////        movies.searchMovieByTitle(moviesearch);
+//        System.out.println("\n\n");
+//        movies.doubleSize();
+//        i = 0;
+//        for(MovieList movies432 : movies.getMovieDatabase()){
+//            System.out.println(i++);
+//            movies432.printList();
+//        }
 
-        //System.out.println(movies.getMovieDatabase()[10].getHead().next.getMovieTitle());
+//        movies.searchMovieByTitle("the lion king");
+//        System.out.println(movies.getMovieDatabase().length);
+//
+//        System.out.println(movies.stringHash("March of the penguins") % 24);
+//        System.out.println(movies.stringHash("taken") % 24);
+        movies.printDatabase();
+        System.out.println("\n\n\n");
+        movies.deleteMovie(movie2);
+        movies.printDatabase();
 
     }
 

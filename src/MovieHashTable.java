@@ -22,21 +22,13 @@ public class MovieHashTable {
         return stringHash;
     }
 
-
-    public int stringHash(Movie movie){
-        int stringHash = 5831;
-        String movieTitle = movie.getMovieTitle();
-        int [] charArray = new int[movieTitle.length()];
-        for(int i = 0; i < movie.getMovieTitle().length(); i++){
-            charArray[i] = (int) movieTitle.charAt(i);
-            stringHash = (5831 * 33) + charArray[i];
-        }
-        return stringHash;
-        }
+    public int stringHashMod(String movieTitle){
+        return stringHash(movieTitle) % movieDatabase.length;
+    }
 
     public void addMovie(Movie movie){
-        int stringHash = stringHash(movie);
-        movieDatabase[stringHash % movieDatabase.length].addMovie(movie);
+        int stringHash = stringHashMod(movie.getMovieTitle());
+        movieDatabase[stringHash].addMovie(movie);
     }
 
     public MovieList[] getMovieDatabase() {
@@ -54,7 +46,7 @@ public class MovieHashTable {
     }
 
     public void searchMovieByTitle(String title){
-        int stringHash = stringHash(title);
+        int stringHash = stringHashMod(title);
         movieDatabase[stringHash].searchListByTitle(title);
     }
 
@@ -77,15 +69,22 @@ public class MovieHashTable {
         for(int i = 0; i < newMovieDatabase.length; i++){
             newMovieDatabase[i] = new MovieList();
         }
-        for(int i = 0; i < movieDatabase.length; i++){
-            if(movieDatabase[i].getHead() != null){
-                newMovieDatabase[stringHash(movieDatabase[i].getHead()) % newMovieDatabase.length] = movieDatabase[i];
-        }
+        for (int i = 0; i < movieDatabase.length; i++) {
+                Movie[] listArray = movieDatabase[i].traverseList();
+                for(Movie movie : listArray){
+                    int newAddress = stringHash(movie.getMovieTitle()) % newMovieDatabase.length;
+                    newMovieDatabase[newAddress].addMovie(movie);
+                }
         }
         this.movieDatabase = newMovieDatabase;
     }
 
     public void getDatabaseSize(){
         System.out.println(this.movieDatabase.length);
+    }
+
+    public void deleteMovie(Movie movie){
+        MovieList location = movieDatabase[stringHashMod(movie.getMovieTitle())];
+        location.deleteMovie(movie);
     }
 }

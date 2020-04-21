@@ -38,8 +38,30 @@ public class MovieList {
             System.out.println(movie.getDescription());
             movie = movie.next;
         }
-
     }
+
+    public int listSize(){
+        Movie movie = head;
+        int counter = 0;
+        while(movie != null){
+            counter ++;
+            movie = movie.next;
+        }
+        return counter;
+    }
+
+    public Movie[] traverseList(){
+        Movie movie = head;
+        Movie [] movieArray = new Movie[listSize()];
+        int i =0;
+        while (movie != null){
+            movieArray[i] = movie;
+            i++;
+            movie = movie.next;
+        }
+        return movieArray;
+    }
+
     public void searchListByTitle(String data){
         Movie movie = this.head;
         while (movie != null){
@@ -51,4 +73,12 @@ public class MovieList {
             }
         }
     }
+
+    public void deleteMovie(Movie movie){
+        if(movie.next != null) {
+            movie.getPrev().setNext(movie.next);
+            }else{
+            head = movie.next;
+        }
+        }
 }
