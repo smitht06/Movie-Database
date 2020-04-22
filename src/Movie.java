@@ -3,8 +3,8 @@ public class Movie {
     private String leadActor;
     private String description;
     private String yearReleased;
-    Movie next;
-    Movie prev;
+    private Movie next;
+    private Movie prev;
     private int index;
 
     public Movie(){

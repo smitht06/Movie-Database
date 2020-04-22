@@ -11,14 +11,18 @@ public class MovieList {
     }
 
     public void addMovie(Movie movie){
+        Movie last = head;
         if(head == null){
             head = movie;
             tail = head;
+            movie.setPrev(null);
             movie.setIndex(0);
         }else {
             movie.setIndex(tail.getIndex()+1);
+            Movie prev = tail;
             tail.setNext(movie);
             tail = movie;
+            tail.setPrev(prev);
         }
     }
 
@@ -30,13 +34,21 @@ public class MovieList {
         return tail;
     }
 
+    public void setHead(Movie head) {
+        this.head = head;
+    }
+
+    public void setTail(Movie tail) {
+        this.tail = tail;
+    }
+
     public void printList(){
         Movie movie = head;
         while (movie != null){
             System.out.println(movie.getMovieTitle());
             System.out.println(movie.getLeadActor());
             System.out.println(movie.getDescription());
-            movie = movie.next;
+            movie = movie.getNext();
         }
     }
 
@@ -45,7 +57,7 @@ public class MovieList {
         int counter = 0;
         while(movie != null){
             counter ++;
-            movie = movie.next;
+            movie = movie.getNext();
         }
         return counter;
     }
@@ -57,28 +69,38 @@ public class MovieList {
         while (movie != null){
             movieArray[i] = movie;
             i++;
-            movie = movie.next;
+            movie = movie.getNext();
         }
         return movieArray;
     }
 
-    public void searchListByTitle(String data){
+    public Movie searchListByTitle(String data){
         Movie movie = this.head;
         while (movie != null){
             if(data.equals(movie.getMovieTitle())){
-                System.out.println("Movie found!" + movie.getMovieTitle());
-                return;
+                System.out.println("Movie found! " + movie.getMovieTitle());
+                return movie;
             }else{
-                movie = movie.next;
+                movie = movie.getNext();
             }
         }
+        return null;
     }
 
-    public void deleteMovie(Movie movie){
-        if(movie.next != null) {
-            movie.getPrev().setNext(movie.next);
+    public void deleteMovie(Movie movie) {
+        try {
+            if (movie.getNext() != null && movie == head) {
+                setHead(movie.getNext());
+            }else if (movie != head && movie != tail){
+                movie.getPrev().setNext(movie.getNext());
+                movie.getNext().setPrev(movie.getPrev());
+            }else if(movie.getNext() == null && movie.getPrev() == null){
+                setHead(null);
             }else{
-            head = movie.next;
+                movie.getPrev().setNext(null);
+            }
+        } catch (NullPointerException e) {
+            System.out.println("movie not found");
         }
-        }
+    }
 }

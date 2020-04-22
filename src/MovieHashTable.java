@@ -1,9 +1,12 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class MovieHashTable {
     private MovieList[] movieDatabase;
+    private double numberOfMovies = 0;
+    DecimalFormat df = new DecimalFormat(".##");
 
     public MovieHashTable() {
         this.movieDatabase = new MovieList[12];
@@ -29,6 +32,12 @@ public class MovieHashTable {
     public void addMovie(Movie movie){
         int stringHash = stringHashMod(movie.getMovieTitle());
         movieDatabase[stringHash].addMovie(movie);
+        numberOfMovies++;
+        double loadFactor = numberOfMovies / movieDatabase.length;
+        if(loadFactor > .5){
+            System.out.println("Load factor = " + df.format(loadFactor) + " doubling size...");
+            doubleSize();
+        }
     }
 
     public MovieList[] getMovieDatabase() {
@@ -54,6 +63,7 @@ public class MovieHashTable {
         File file = new File(fileName);
         try {
             Scanner scan = new Scanner(file);
+            System.out.println("File successfully added!");
             while(scan.hasNextLine()){
                 String [] line = scan.nextLine().split(",");
                 Movie movie = new Movie(line[0], line[1], line[2], line[3]);
@@ -83,8 +93,10 @@ public class MovieHashTable {
         System.out.println(this.movieDatabase.length);
     }
 
-    public void deleteMovie(Movie movie){
-        MovieList location = movieDatabase[stringHashMod(movie.getMovieTitle())];
-        location.deleteMovie(movie);
+    public void deleteMovie(String movie){
+        MovieList location = movieDatabase[stringHashMod(movie)];
+        Movie delete = location.searchListByTitle(movie);
+        location.deleteMovie(delete);
+        System.out.println("Movie deleted");
     }
 }
