@@ -1,6 +1,7 @@
 public class MovieList {
     private Movie head;
     private Movie tail;
+
     public MovieList(){
         head = tail = null;
     }
@@ -17,7 +18,7 @@ public class MovieList {
             tail = head;
             movie.setPrev(null);
             movie.setIndex(0);
-        }else {
+        }else{
             movie.setIndex(tail.getIndex()+1);
             Movie prev = tail;
             tail.setNext(movie);
@@ -78,7 +79,10 @@ public class MovieList {
         Movie movie = this.head;
         while (movie != null){
             if(data.equals(movie.getMovieTitle())){
-                System.out.println("Movie found! " + movie.getMovieTitle());
+                System.out.println("Movie found! \n Title: " + movie.getMovieTitle());
+                System.out.println("Description: " + movie.getDescription());
+                System.out.println("Lead Actor: " + movie.getLeadActor());
+                System.out.println("Year Released: " + movie.getYearReleased());
                 return movie;
             }else{
                 movie = movie.getNext();
