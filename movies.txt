@@ -1,4 +1,4 @@
-The little mermaid,ariel,movie under the sea,1993
-taken,liam neisson,daughter is taken needs to get her back,2009
-independence day,will smith,aliens come to earth,1996
-rugrats movie,who knows,babies go on adventure,2001
+The Little Mermaid,ariel,movie under the sea,1993
+Taken,Liam Neisson,daughter is taken needs to get her back,2009
+Independence Day,will smith,aliens come to earth,1996
+Rugrats Movie,who knows,babies go on adventure,2001

@@ -1,4 +1,13 @@
+/*
+ * File: Movie.java
+ * Author: Anthony Smith
+ * Date: 4/25/2020
+ * COP 5416
+ * Project 3
+ * Purpose: This class creates a movie or node in the movie list
+ * */
 public class Movie {
+    //declare all global variables
     private String movieTitle;
     private String leadActor;
     private String description;
@@ -7,9 +16,11 @@ public class Movie {
     private Movie prev;
     private int index;
 
+    //constructor
     public Movie(){
     }
 
+    //default constructor
     public Movie(String movieTitle, String leadActor, String description, String yearReleased){
         this.next = null;
         this.prev = null;
@@ -19,10 +30,12 @@ public class Movie {
         this.yearReleased = yearReleased;
     }
 
+    //index on the movieList
     public int getIndex() {
         return index;
     }
 
+    //getters and setters
     public void setIndex(int index) {
         this.index = index;
     }

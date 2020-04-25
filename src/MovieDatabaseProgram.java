@@ -1,12 +1,23 @@
+/*
+ * File: MovieDatabase.java
+ * Author: Anthony Smith
+ * Date: 4/25/2020
+ * COP 5416
+ * Project 3
+ * Purpose: This class creates the movie database and runs a program so that the user can add, search and delete movies
+ * */
 import java.util.Scanner;
 
 public class MovieDatabaseProgram {
+    //main method
     public static void main(String []args){
         MovieHashTable movies = new MovieHashTable();
         runProgram(movies);
     }
 
+    //prints the menu
     public static void menu(){
+        System.out.println("\n\n");
         System.out.println("Welcome to the Movie Database");
         System.out.println("---------Make a Choice--------");
         System.out.println("Read database file (1)");
@@ -17,6 +28,7 @@ public class MovieDatabaseProgram {
         System.out.println("Exit (-1)");
     }
 
+    //runs the program on a loop until user enters -1
     public static void runProgram(MovieHashTable movies){
         int choice = 0;
         Scanner scan = new Scanner(System.in);
@@ -24,6 +36,7 @@ public class MovieDatabaseProgram {
             while (choice != -1){
             menu();
             choice = scan.nextInt();
+            //switch statement takes user input and runs commands
             switch (choice){
                 case 1:
                     System.out.println("Enter file name");
@@ -53,10 +66,7 @@ public class MovieDatabaseProgram {
                     break;
                 case 5:
                     int i = 0;
-                    for(MovieList movies432 : movies.getMovieDatabase()){
-                        System.out.println(i++);
-                        movies432.printList();
-                        }
+                    movies.printDatabase();
                     break;
             }
         }

@@ -1,13 +1,24 @@
+/*
+ * File: MovieHashTable.java
+ * Author: Anthony Smith
+ * Date: 4/25/2020
+ * COP 5416
+ * Project 3
+ * Purpose: This class uses an array of MovieLists to create a Hash Table
+ * */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class MovieHashTable {
+    //declare movie list array
     private MovieList[] movieDatabase;
+    //declare global variable and decimal format
     private double numberOfMovies = 0;
     DecimalFormat df = new DecimalFormat(".##");
 
+    //constructor creates array and initializes 13 empty lists
     public MovieHashTable() {
         this.movieDatabase = new MovieList[12];
         for(int i = 0; i < this.movieDatabase.length; i++){
@@ -15,6 +26,7 @@ public class MovieHashTable {
         }
     }
 
+    //returns the stringhash of a movie title
     public int stringHash(String movieTitle){
         int stringHash = 5831;
         int [] charArray = new int[movieTitle.length()];
@@ -25,10 +37,12 @@ public class MovieHashTable {
         return stringHash;
     }
 
+    //returns the string hash modulus the database size
     public int stringHashMod(String movieTitle){
         return stringHash(movieTitle) % movieDatabase.length;
     }
 
+    //adds a movie to the hashtable based on stringhash
     public void addMovie(Movie movie){
         int stringHash = stringHashMod(movie.getMovieTitle());
         movieDatabase[stringHash].addMovie(movie);
@@ -40,6 +54,7 @@ public class MovieHashTable {
         }
     }
 
+    //getters and setters
     public MovieList[] getMovieDatabase() {
         return movieDatabase;
     }
@@ -48,17 +63,20 @@ public class MovieHashTable {
         this.movieDatabase = movieDatabase;
     }
 
+    //prints database to console
     public void printDatabase(){
         for(MovieList movieList : movieDatabase){
             movieList.printList();
         }
     }
 
+    //searches hash table for movie by going to the list the movie should be in
     public void searchMovieByTitle(String title){
         int stringHash = stringHashMod(title);
         movieDatabase[stringHash].searchListByTitle(title);
     }
 
+    //reads movies from file and adds to the database
     public void readFile(String fileName){
         File file = new File(fileName);
         try {
@@ -74,6 +92,7 @@ public class MovieHashTable {
         }
     }
 
+    //method doubles and rehashes the table, this method is called in the add movie method above
     public void doubleSize(){
         MovieList [] newMovieDatabase = new MovieList[movieDatabase.length * 2];
         for(int i = 0; i < newMovieDatabase.length; i++){
@@ -93,6 +112,7 @@ public class MovieHashTable {
         System.out.println(this.movieDatabase.length);
     }
 
+    //delete movie from hashtable
     public void deleteMovie(String movie){
         MovieList location = movieDatabase[stringHashMod(movie)];
         Movie delete = location.searchListByTitle(movie);
